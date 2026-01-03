@@ -339,3 +339,92 @@ footer .layar-dalam .copyright {
     padding-bottom: 30px;
   }
 }
+/* =========================================
+   RESPONSIVE DESIGN (Mobile & Tablet)
+   ========================================= */
+
+/* Untuk Tablet dan Laptop Kecil */
+@media (max-width: 1200px) {
+  html {
+    font-size: 55%; /* Mengecilkan skala seluruh buku */
+  }
+}
+
+/* Untuk Tablet Portrait */
+@media (max-width: 991px) {
+  .wrapper {
+    width: 90%; /* Ubah lebar fix menjadi persen */
+    height: auto; /* Tinggi menyesuaikan */
+    aspect-ratio: 1.5; /* Menjaga rasio bentuk buku */
+    padding: 0;
+  }
+
+  .profile-page img {
+    width: 150px; /* Kecilkan foto profil agar muat */
+    height: 150px;
+    border: 3px solid #00adef; /* Tipiskan border */
+  }
+}
+
+/* Untuk Layar HP (Mobile) */
+@media (max-width: 768px) {
+  html {
+    font-size: 45%; /* Perkecil lagi skalanya */
+  }
+
+  .wrapper {
+    width: 100%;
+    padding: 0 1rem; /* Beri sedikit jarak kiri-kanan */
+    perspective: 1000px; /* Kurangi perspektif agar tidak terlalu melengkung */
+  }
+
+  /* Penyesuaian Foto Profil di HP */
+  .profile-page img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .profile-page h1 {
+    font-size: 2rem; /* Sesuaikan ukuran nama */
+  }
+
+  /* Penyesuaian Tombol Navigasi */
+  .nextprev-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 2.5rem;
+    bottom: 0.5rem;
+    right: 1rem;
+  }
+
+  .nextprev-btn.back {
+    left: 1rem;
+  }
+
+  /* Agar konten tidak terpotong saat di-scroll */
+  .book-page .page-front,
+  .book-page .page-back {
+    padding: 1.5rem 1rem;
+    overflow-y: auto; /* Tambahkan scroll jika teks kepanjangan */
+  }
+}
+
+/* Untuk HP Layar Sangat Kecil (Dibawah 450px) */
+@media (max-width: 450px) {
+  html {
+    font-size: 35%; /* Skala ekstrem untuk HP kecil */
+  }
+
+  .profile-page p {
+    font-size: 1.3rem; /* Perbesar sedikit teks deskripsi agar terbaca */
+    line-height: 1.4;
+  }
+
+  .btn {
+    width: auto; /* Tombol menyesuaikan isi */
+    padding: 0 1rem;
+    height: 3.5rem;
+  }
+}
+
