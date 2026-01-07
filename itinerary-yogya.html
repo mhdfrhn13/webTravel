@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Itinerary - Yogya - Travel</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .header-halaman {
+        height: 50vh;
+        background-image: url("asset/blog1.jpg");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .header-halaman h1 {
+        color: white;
+        font-size: 40px;
+        z-index: 2;
+        text-shadow: 2px 2px 5px #000;
+
+        /* Tambahan agar teks selalu di tengah dan ada jarak kiri-kanan */
+        text-align: center;
+        padding: 0 20px;
+        line-height: 1.2; /* Jarak antar baris supaya tidak terlalu rapat */
+      }
+
+      /* --- TAMBAHKAN INI DI BAWAHNYA --- */
+      /* CSS Khusus HP (Layar di bawah 768px) */
+      @media screen and (max-width: 768px) {
+        .header-halaman {
+          height: 40vh; /* Tinggi header dikurangi sedikit di HP */
+        }
+        .header-halaman h1 {
+          font-size: 24px; /* Ukuran font dikecilkan dari 40px ke 24px */
+        }
+      }
+      .overlay-tipis {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .detail-itinerary {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      .hari {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 5px solid #c86b85;
+        border-radius: 5px;
+      }
+      .hari h4 {
+        margin-top: 0;
+        color: #333;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="layar-dalam">
+        <div class="logo">
+          <a href="index.html"
+            ><img src="asset/logo-white.png" class="putih"
+          /></a>
+          <a href="index.html"
+            ><img src="asset/logo-black.png" class="hitam"
+          /></a>
+        </div>
+        <div class="menu">
+          <a href="#" class="tombol-menu">
+            <span class="garis"></span><span class="garis"></span
+            ><span class="garis"></span>
+          </a>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#blog">Back to Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="header-halaman">
+      <div class="overlay-tipis"></div>
+      <h1>Jelajah Keindahan Yogya</h1>
+    </header>
+
+    <main>
+      <section class="layar-dalam detail-itinerary">
+        <h3>Detail Perjalanan (3 Hari 2 Malam)</h3>
+        <p>
+          Nikmati pengalaman tak terlupakan mengejar matahari terbit di salah
+          satu gunung terindah di Indonesia.
+        </p>
+        <br />
+
+        <div class="hari">
+          <h4>Hari 1: Penjemputan & Menuju Desa Cemoro Lawang</h4>
+          <ul>
+            <li>
+              09:00 - Penjemputan di Bandara/Stasiun Malang atau Surabaya.
+            </li>
+            <li>12:00 - Makan siang kuliner lokal.</li>
+            <li>15:00 - Check-in penginapan di area Cemoro Lawang.</li>
+            <li>17:00 - Menikmati sunset tipis di area sekitar penginapan.</li>
+          </ul>
+        </div>
+
+        <div class="hari">
+          <h4>Hari 2: Golden Sunrise & Kawah Bromo</h4>
+          <ul>
+            <li>02:30 - Persiapan & penjemputan Jeep 4x4.</li>
+            <li>04:30 - Menunggu Golden Sunrise di Penanjakan 1.</li>
+            <li>06:00 - Menuju Kawah Bromo & Pura Luhur Poten.</li>
+            <li>08:00 - Padang Savana (Bukit Teletubbies) & Pasir Berbisik.</li>
+            <li>10:00 - Kembali ke hotel, sarapan, dan istirahat.</li>
+          </ul>
+        </div>
+
+        <div class="hari">
+          <h4>Hari 3: Air Terjun Madakaripura & Pulang</h4>
+          <ul>
+            <li>08:00 - Check-out penginapan.</li>
+            <li>09:00 - Mengunjungi Air Terjun Madakaripura (Opsional).</li>
+            <li>13:00 - Pengantaran kembali ke Bandara/Stasiun.</li>
+            <li>15:00 - Trip Selesai.</li>
+          </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px">
+          <a href="https://wa.me/628123456789" class="tombol"
+            >BOOKING SEKARANG</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="layar-dalam">
+        <div class="copyright">&copy; 2026 FnS Tour and Travel</div>
+      </div>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="javascript.js"></script>
+  </body>
+</html>
