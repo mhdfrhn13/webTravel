@@ -103,15 +103,26 @@
           </div>
         </section>
         <section id="gallery">
-          <div><img src="asset/foto1.jpg" /></div>
-          <div><img src="asset/foto2.jpg" /></div>
-          <div><img src="asset/foto3.jpg" /></div>
-          <div><img src="asset/foto4.jpg" /></div>
-          <div><img src="asset/foto5.jpg" /></div>
-          <div><img src="asset/foto6.jpg" /></div>
-          <div><img src="asset/foto7.jpg" /></div>
-          <div><img src="asset/foto8.jpg" /></div>
-        </section>
+  <div class="layar-dalam" style="text-align: center; margin-bottom: 20px;">
+    <h3>Our Gallery</h3>
+  </div>
+
+  <div class="gallery-wrapper">
+    <button class="nav-btn prev-btn" onclick="geserGallery(-1)">&#10094;</button>
+    
+    <div class="gallery-container">
+      <div><img src="asset/foto1.jpg" alt="Gallery 1" /></div>
+      <div><img src="asset/foto2.jpg" alt="Gallery 2" /></div>
+      <div><img src="asset/foto3.jpg" alt="Gallery 3" /></div>
+      <div><img src="asset/foto4.jpg" alt="Gallery 4" /></div>
+      <div><img src="asset/foto5.jpg" alt="Gallery 5" /></div>
+      <div><img src="asset/foto6.jpg" alt="Gallery 6" /></div>
+      <div><img src="asset/foto7.jpg" alt="Gallery 7" /></div>
+      <div><img src="asset/foto8.jpg" alt="Gallery 8" /></div>
+    </div>
+    <button class="nav-btn next-btn" onclick="geserGallery(1)">&#10095;</button>
+  </div>
+</section>
         <section class="quote">
           <div class="layar-dalam">
             <p>
@@ -248,6 +259,10 @@
         </div>
       </footer>
     </div>
+    <div id="popup-gallery" onclick="tutupPopup()">
+      <span class="tombol-close">&times;</span>
+      <img id="popup-img" src="" alt="Popup Image">
+   </div>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
