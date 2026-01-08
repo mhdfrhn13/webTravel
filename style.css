@@ -230,6 +230,7 @@ section#gallery {
   width: 100%; /* Lebar penuh mengikuti wrapper */
 
   /* Menyembunyikan Scrollbar Bawaan Browser (Kosmetik) */
+  overscroll-behavior-x: none;
   scrollbar-width: none; /* Untuk Firefox */
   -ms-overflow-style: none; /* Untuk IE/Edge */
 }

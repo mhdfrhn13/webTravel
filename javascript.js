@@ -47,70 +47,75 @@ $(document).ready(function () {
   });
 });
 
-// --- KODE GABUNGAN: CAROUSEL INFINITE & POPUP ---
-
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.querySelector(".gallery-container");
-  const scrollAmount = 300; // Jarak geser per klik
+  const scrollAmount = 300; // Jarak geser tombol
 
-  // --- 1. SETUP INFINITE LOOP (DUPLIKASI GAMBAR) ---
-  // Kita copy semua gambar asli dan tempelkan lagi di sebelahnya
-  // Jadinya: [Gambar 1-8] + [Gambar 1-8]
+  // 1. DUPLIKASI GAMBAR
   if (container) {
     container.innerHTML += container.innerHTML;
   }
 
-  // --- 2. FUNGSI TOMBOL GESER (MODIFIED) ---
-  // Kita pasang di window agar bisa dipanggil dari HTML onclick
-  window.geserGallery = function (arah) {
-    if (!container) return;
-
-    if (arah === 1) {
-      // --- TOMBOL KANAN ---
-      // Cek dulu: Apakah sudah di ujung kanan (area hasil duplikat)?
-      // Jika ya, teleportasi dulu ke area awal (tengah kiri) secara instan
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0;
-      }
-      // Baru geser halus
-      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    } else {
-      // --- TOMBOL KIRI ---
-      // Cek dulu: Apakah sudah mentok kiri (0)?
-      // Jika ya, teleportasi dulu ke area duplikat (tengah kanan) secara instan
-      if (container.scrollLeft <= 0) {
-        container.scrollLeft = container.scrollWidth / 2;
-      }
-      // Baru geser halus
-      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+  // --- LOGIKA "START DI TENGAH" ---
+  // Fungsi untuk mengatur posisi awal agar tidak mentok kiri
+  function initPosition() {
+    if (container) {
+      // Langsung pindah ke awal dari Set Kedua (Tengah)
+      // Jadi di sebelah kiri ada 'ruang' (Set Pertama)
+      container.scrollLeft = container.scrollWidth / 2;
     }
-  };
+  }
 
-  // --- 3. EVENT LISTENER SCROLL (PENJAGA LOOP) ---
-  // Ini untuk menangani jika user scroll pakai jari/touchpad (bukan tombol)
+  // Jalankan saat loading selesai
+  // Kita beri jeda sedikit biar gambar loading sempurna dulu
+  setTimeout(initPosition, 100);
+
+  // 2. INFINITE LOOP MONITOR
   if (container) {
     container.addEventListener("scroll", function () {
-      // Jika user scroll manual sampai ujung kanan
-      if (container.scrollLeft >= container.scrollWidth / 2) {
-        container.scrollLeft = 0; // Banting ke awal (loop)
+      const oneSetWidth = container.scrollWidth / 2;
+
+      // A. Jika user geser ke KIRI sampai mentok (Posisi 0)
+      // Kita lempar balik ke TENGAH (Awal Set 2)
+      if (container.scrollLeft <= 0) {
+        container.style.scrollBehavior = "auto"; // Matikan animasi
+        container.scrollLeft = oneSetWidth; // Teleport
+        container.style.scrollBehavior = "smooth"; // Hidupkan lagi
       }
-      // Jika user scroll manual sampai mentok kiri
-      // (Opsional: biasanya browser menahan scroll negatif, tapi ini jaga-jaga)
-      if (container.scrollLeft === 0) {
-        // Kita biarkan user merasa di awal, tapi kalau dia geser kiri lagi
-        // Logic tombol di atas yang akan menangani
+
+      // B. Jika user geser ke KANAN sampai habis (Akhir Set 2)
+      // Kita lempar balik ke AKHIR Set 1 (Tengah)
+      else if (
+        container.scrollLeft >=
+        container.scrollWidth - container.clientWidth
+      ) {
+        container.style.scrollBehavior = "auto";
+        container.scrollLeft = oneSetWidth - container.clientWidth;
+        container.style.scrollBehavior = "smooth";
       }
     });
   }
 
-  // --- 4. LOGIKA POP-UP GAMBAR (LIGHTBOX) ---
+  // 3. FUNGSI TOMBOL
+  window.geserGallery = function (arah) {
+    if (!container) return;
+
+    // Pastikan scroll smooth aktif untuk tombol
+    container.style.scrollBehavior = "smooth";
+
+    if (arah === 1) {
+      container.scrollLeft += scrollAmount;
+    } else {
+      container.scrollLeft -= scrollAmount;
+    }
+  };
+
+  // --- LOGIKA POPUP (LIGHTBOX) ---
   const popup = document.getElementById("popup-gallery");
   const popupImg = document.getElementById("popup-img");
-
-  // Karena gambar diduplikasi, kita harus ambil list gambar TERBARU
+  // Ambil ulang gambar karena jumlahnya bertambah
   const allImages = document.querySelectorAll(".gallery-container img");
 
-  // Pasang fungsi klik ke SETIAP gambar (termasuk hasil duplikat)
   allImages.forEach(function (img) {
     img.addEventListener("click", function () {
       if (popup && popupImg) {
@@ -120,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Tombol Close
   const closeBtn = document.querySelector(".tombol-close");
   if (closeBtn) {
     closeBtn.addEventListener("click", function (e) {
@@ -130,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Fungsi Tutup Popup
 function tutupPopup() {
   const popup = document.getElementById("popup-gallery");
   if (popup) popup.style.display = "none";
